@@ -1,0 +1,41 @@
+<div class="profile-body">
+    <div class="profile-wraper">
+        <div class="profile-info">
+            <%- include ("layouts/info.ejs")  %> 
+            <hr />
+            <%- include ("layouts/menu.ejs") %> 
+        </div>
+        <div class="profile-box">
+            <div class="box-content">
+                <h2>Find Friends</h2>
+                <% if (message) { %>
+                    <p> <%= message %>  </p>
+                    <% } %>
+                <hr>
+                <div class="friends-area">
+
+                    <% friends.forEach(element => { %>
+                        <div class="friends-item">
+                            <a href="/<%= element._id %>">
+                                <img src="/media/users/<%= element.photo %>" alt="">
+                            </a>
+                            <div class="friends-info">
+                                <span><%= element.name %></span>
+                                <span><%= element.email %></span>
+
+
+                                <% let follow = user.following.some(data => data == element._id) %>
+
+                                <% if (follow) { %>
+                                    <a class="unfollow" href="/unfollow/<%= element._id %>">Unfollow</a>
+                                <% } else { %>
+                                    <a class="follow" href="/follow/<%= element._id %>">Follow</a>
+                                <% } %> 
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

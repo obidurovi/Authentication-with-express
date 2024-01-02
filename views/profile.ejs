@@ -1,0 +1,44 @@
+<div class="profile-body">
+  <div class="profile-wraper">
+    <div class="profile-info">
+      <%- include ("layouts/info.ejs") %>
+      <hr />
+      <%- include ("layouts/menu.ejs") %>
+    </div>
+    <div class="profile-box">
+      <div class="profile-details">
+        <div class="profile-photo">
+          <% if (user.photo) { %>
+          <img
+            class="profile-preview"
+            src="./media/users/<%= user.photo %> "
+            alt=""
+          />
+          <% } else { %>
+          <img class="profile-preview" src="./images/avatar.png" alt="" />
+          <% } %>
+          <div class="user-data">
+            <h2><%= user.name %></h2>
+            <p><%= user.email %></p>
+            <p class="follow">
+              <%= user.follower.length %> followers . <%= user.following.length
+              %> following
+            </p>
+          </div>
+        </div>
+        <hr />
+        <div class="user-gallery">
+          <h3>Gallery Photo</h3>
+          <hr />
+          <div class="gallery-area">
+            <% user.gallery.forEach(gall => { %>
+            <div class="gallery-item">
+              <img src="./media/gallery/<%= gall %>" alt="" />
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
